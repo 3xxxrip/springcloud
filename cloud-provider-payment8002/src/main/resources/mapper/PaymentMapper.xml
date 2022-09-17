@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace就是对应的mapper全类名-->
+<mapper namespace="com.atguigu.springcloud.dao.PaymentDao">
+
+    <insert id="create" parameterType="payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial) values (#{serial})
+    </insert>
+    <select id="getPaymentById" parameterType="long" resultMap="BaseResultMap">
+        select * from payment where id=#{id}
+    </select>
+<!--    自定义字段和属性之间的映射-->
+    <!--
+    resultMap：设置自定义映射
+    属性：
+    id：表示自定义映射的唯一标识
+    type：查询的数据要映射的实体类的类型
+    子标签：
+    id：设置主键的映射关系
+    result：设置普通字段的映射关系
+    association：设置多对一的映射关系
+    collection：设置一对多的映射关系
+    属性：
+    property：设置映射关系中实体类中的属性名
+    column：设置映射关系中表中的字段名
+-->
+
+    <resultMap id="BaseResultMap" type="payment">
+        <id property="id" column="id" jdbcType="BIGINT"></id>
+        <result property="serial" column="serial" jdbcType="VARCHAR"></result>
+    </resultMap>
+</mapper>

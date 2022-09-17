@@ -1,0 +1,14 @@
+#设置当前服务端口号
+server:
+  port: 8004
+
+#设置当前服务名称,就是在微服务里面的名称，这个例子是使用zookeeper作为服务注册中心使用的
+spring:
+  application:
+    name: cloud-provider-payment
+  #配置zookeeper作为服务注册中心
+  cloud:
+    zookeeper:
+      connect-string: 106.13.203.5:2181
+
+

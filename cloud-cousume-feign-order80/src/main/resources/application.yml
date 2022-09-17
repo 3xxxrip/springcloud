@@ -1,0 +1,25 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    #表示是否想eurake注册服务，我们是消费者，所以不用注册服务
+    register-with-eureka: false
+    #获取eurake的注册地址
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      #fetch是获取的意思，表示向eureka获取服务注册表
+   fetch-registry: true
+    #openfeign远程访问的默认超时时间是1s,超过1s就会报连接超时的错误，我们可以修改配置文件来修改默认的连接时间。
+feign:
+  client:
+    config:
+      default:
+        default:
+          #建立连接所用的时间，适用于网络状况正常的情况下，两端连接所需要的时间,存在map里面
+          ConnectTimeOut: 5000
+          #指建立连接后从服务端读取到可用资源所用的时间,默认为1s
+          ReadTimeOut: 5000
+logging:
+  level:
+    PaymentFeignService: debug
